@@ -31,6 +31,7 @@ import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
 import group.vulner.ghov_dieuvan.view.hangvekho.Presenter.ExpandableListViewHangHenGiao;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaohang_HHG;
+import group.vulner.ghov_dieuvan.view.tapketgiao.model.DonHang;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
 
@@ -60,7 +61,7 @@ public class FragmentHangHenGiao extends Fragment {
         return view;
     }
 
-    class AsyntaskHangHenGiao extends AsyncTask<Void, Void, ArrayList<DonHang_HHG>> {
+  public class AsyntaskHangHenGiao extends AsyncTask<Void, Void, ArrayList<DonHang_HHG>> {
         Context context;
 
         public AsyntaskHangHenGiao(Context context) {
@@ -73,18 +74,17 @@ public class FragmentHangHenGiao extends Fragment {
             String sesstion = manager.getSession("giá trị mặc định");
             ArrayList<DonHang_HHG> lstDonHang_HHG = new ArrayList<>();
 
-            String urlHangHenGiao = "http://www.giaohangongvang.com" +
-                                    "/api/dieuvan/list-xac-nhan-hang-hen-giao";
+            String urlHangHenGiao = "http://www.giaohangongvang.com/api/dieuvan/list-xac-nhan-hang-hen-giao";
 
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(urlHangHenGiao);
             MultipartEntity entity = new MultipartEntity();
             try {
                 entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
-                Log.e("entity hàng hẹn giao", entity.toString());
+//                Log.e("entity hàng hẹn giao", entity.toString());
                 httpPost.setEntity(entity);
                 HttpResponse response = client.execute(httpPost);
-                Log.i("response", entity.toString() + "");
+//                Log.i("response", entity.toString() + "");
                 if (response == null
                     || response.getStatusLine().getStatusCode() != 200) {
                     return null;
@@ -92,7 +92,7 @@ public class FragmentHangHenGiao extends Fragment {
                     ByteArrayOutputStream DataOut = new ByteArrayOutputStream();
                     response.getEntity().writeTo(DataOut);
                     String GiaTriTraVe = DataOut.toString();
-                    Log.e("GiaTriTraVe hangHenGiao", GiaTriTraVe.toString());
+                    Log.e("Json hangHenGiao", GiaTriTraVe.toString());
                     DataOut.close();
                     if (CheckRespone(GiaTriTraVe)) {
                         JSONObject objectRoot = new JSONObject(GiaTriTraVe);
@@ -132,7 +132,7 @@ public class FragmentHangHenGiao extends Fragment {
         //
         //
         @Override
-        protected void onPostExecute(ArrayList<DonHang_HHG> donHangHoen) {
+        protected void onPostExecute(ArrayList<DonHang_HHG> donHangHoen){
             if (donHangHoen.size() > 0) {
                 listNhanVienGiaoHang(donHangHoen);
                 List<NhanVienGiaohang_HHG> temp = listNhanVienGiaoHang(donHangHoen);
@@ -168,7 +168,7 @@ public class FragmentHangHenGiao extends Fragment {
         }
     }
 
-    public ArrayList<NhanVienGiaohang_HHG> listNhanVienGiaoHang(ArrayList<DonHang_HHG> donHangHoen) {
+    public static ArrayList<NhanVienGiaohang_HHG> listNhanVienGiaoHang(ArrayList<DonHang_HHG> donHangHoen) {
 
         ArrayList<NhanVienGiaohang_HHG> lstNhanVienGiaoHang_HHG_ = new ArrayList<>();
 

@@ -135,7 +135,6 @@ public class Utils {
 
     public static boolean CheckRespone(String jsonRespone) throws JSONException {
         JSONObject object = new JSONObject(jsonRespone);
-        Log.e("trave",jsonRespone);
         object.getString("status");
         if (object.getString("status").equals("success")) {
             return true;

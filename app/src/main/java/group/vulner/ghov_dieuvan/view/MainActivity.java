@@ -107,8 +107,10 @@ public class MainActivity extends AppCompatActivity
 //                break;
 //            }
             case R.id.it_log_in:{
+                manager = new SharepreferenceManager(context);
                 Intent intent = new Intent(MainActivity.this, ActivityLogin.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                manager.saveSession("Giá trị mặc định");
                 startActivity(intent);
                 finish();
             }

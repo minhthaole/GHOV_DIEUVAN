@@ -299,7 +299,7 @@ public class ActivityLogin extends AppCompatActivity {
                     savefile.saveIdThanhPho(dataRespone.id_thanh_pho);
                     savefile.saveIdQuan(dataRespone.id_quan);
                     savefile.saveIdPhuong(dataRespone.id_phuong);
-                    startActivity(new Intent(context, MainActivity.class));
+                    startActivity(new Intent(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                     finish();
                     savefile.getSession("Giá trị mặc định");
                     Log.e("session trả về", savefile.getSession("Giá trị mặc định"));

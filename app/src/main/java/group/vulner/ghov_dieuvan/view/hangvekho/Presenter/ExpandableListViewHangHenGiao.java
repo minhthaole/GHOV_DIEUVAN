@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ import java.util.List;
 import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.Utils;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
+import group.vulner.ghov_dieuvan.view.MainActivity;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaohang_HHG;
 
@@ -187,8 +189,11 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         });
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                AsyntaskXacNhanDonHang xacNhanDonHang = new AsyntaskXacNhanDonHang(context);
-                xacNhanDonHang.execute(listID);
+                AsyntaskXacNhanDonHangHenGiao asyntaskXacNhanDonHangHenGiao = new AsyntaskXacNhanDonHangHenGiao(context);
+                asyntaskXacNhanDonHangHenGiao.execute(listID);
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                context.startActivity(intent);
             }
         });
 
@@ -200,10 +205,10 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         return false;
     }
 
-    public class AsyntaskXacNhanDonHang extends AsyncTask<String, Void, String> {
+    public class AsyntaskXacNhanDonHangHenGiao extends AsyncTask<String, Void, String> {
         Context context;
 
-        public AsyntaskXacNhanDonHang(Context context) {
+        public AsyntaskXacNhanDonHangHenGiao(Context context) {
             this.context = context;
         }
 
@@ -213,7 +218,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
             String sesstion = manager.getSession("giá trị mặc định");
             String GiaTriTraVe = "";
             String value = params[0];
-            String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hoan-ve-kho";
+            String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(UrlXacNhan);
             MultipartEntity entity = new MultipartEntity();
@@ -248,6 +253,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Log.e("xac nhan hen giao: ", s);
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {

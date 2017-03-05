@@ -57,17 +57,17 @@ public class FragmentHangHoan extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_hang_ve_kho, container, false);
         my_expandableListView = (ExpandableListView) view.findViewById(R.id.epl_hang_ve_kho);
-        AsyntaskHangHenGiao asyntaskDanhSachHangVeKho = new AsyntaskHangHenGiao(getContext());
+        AsyntaskHangHoan asyntaskDanhSachHangVeKho = new AsyntaskHangHoan(getContext());
         asyntaskDanhSachHangVeKho.execute();
 
         return view;
 
     }
 
-    class AsyntaskHangHenGiao extends AsyncTask<Void, Void, ArrayList<DonHang_Hoan>> {
+   public class AsyntaskHangHoan extends AsyncTask<Void, Void, ArrayList<DonHang_Hoan>> {
         Context context;
 
-        public AsyntaskHangHenGiao(Context context) {
+        public AsyntaskHangHoan(Context context) {
             this.context = context;
         }
 
@@ -77,7 +77,7 @@ public class FragmentHangHoan extends Fragment {
             SharepreferenceManager manager = new SharepreferenceManager(context);
             String sesstion = manager.getSession("giá trị mặc định");
             ArrayList<DonHang_Hoan> lstDonHangHoan = new ArrayList<>();
-            String urlHangHenGiao = "http://www.giaohangongvang.com/api/dieuvan/list-xac-nhan-hang-hoan";
+            String urlHangHenGiao = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
 
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(urlHangHenGiao);
@@ -87,7 +87,7 @@ public class FragmentHangHoan extends Fragment {
                 Log.e("entity hàng hoàn", entity.toString());
                 httpPost.setEntity(entity);
                 HttpResponse response = client.execute(httpPost);
-                Log.i("response", entity.toString() + "");
+//                Log.i("response", entity.toString() + "");
                 if (response == null
                     || response.getStatusLine().getStatusCode() != 200) {
                     return null;
@@ -95,7 +95,7 @@ public class FragmentHangHoan extends Fragment {
                     ByteArrayOutputStream DataOut = new ByteArrayOutputStream();
                     response.getEntity().writeTo(DataOut);
                     String GiaTriTraVe = DataOut.toString();
-                    Log.e("GiaTriTraVe  Hàng hoàn", GiaTriTraVe.toString());
+                    Log.e("Json  Hàng hoàn", GiaTriTraVe.toString());
                     DataOut.close();
                     if (CheckRespone(GiaTriTraVe)) {
                         JSONObject objectRoot = new JSONObject(GiaTriTraVe);
