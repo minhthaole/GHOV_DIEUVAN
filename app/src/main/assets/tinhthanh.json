@@ -1,0 +1,46 @@
+[
+  {
+    "id_thanh_pho": "01",
+    "ten_thanh_pho": "Hà Nội",
+    "quan": [
+      {
+        "id_quan": "001",
+        "ten_quan": "Ba Đình"
+      },
+      {
+        "id_quan": "002",
+        "ten_quan": "Hoàn Kiếm"
+      },
+      {
+        "id_quan": "003",
+        "ten_quan": "Thanh Xuân"
+      },
+      {
+        "id_quan": "004",
+        "ten_quan": "Long Biên"
+      },
+      {
+        "id_quan": "005",
+        "ten_quan": "Cầu Giấy"
+      },
+      {
+        "id_quan": "006",
+        "ten_quan": "Hà Đông"
+      }
+    ]
+  },
+  {
+    "id_thanh_pho": "31",
+    "ten_thanh_pho": "Hải Phòng",
+    "quan": [
+      {
+        "id_quan": "303",
+        "ten_quan": "Hồng Bàng"
+      },
+      {
+        "id_quan": "304",
+        "ten_quan": "Ngô Quyền"
+      }
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_thongtintaikhoan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:windowSoftInputMode="stateHidden">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="III. Thông tin tài khoản"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+            android:textSize="20dp"
+            android:gravity="left"/>
+
+        <EditText
+            android:id="@+id/edtEmailCaNhan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Gmail"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="5dp" />
+
+        <EditText
+            android:id="@+id/edtMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Mật Khẩu"
+            android:inputType="textPassword"
+            android:paddingLeft="5dp" />
+
+        <EditText
+            android:id="@+id/edtNhapLaiMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Nhập Lại Mật Khẩu"
+            android:inputType="textPassword"
+            android:paddingLeft="5dp" />
+
+
+    </LinearLayout>
+</ScrollView>

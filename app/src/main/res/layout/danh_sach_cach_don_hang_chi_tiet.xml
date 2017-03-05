@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#edff76"
+              android:orientation="horizontal"
+              android:weightSum="8">
+
+    <TextView
+        android:id="@+id/tv_danh_sach_cac_don_hang_chi_tiet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:paddingLeft="20dp"/>
+    <Button
+        android:id="@+id/btn_xac_nhan_tap_ket_giao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="Xác nhận"/>
+</LinearLayout>

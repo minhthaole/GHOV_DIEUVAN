@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <!--<item-->
+            <!--android:id="@+id/it_tao_don_hang"-->
+            <!--android:icon="@drawable/ic_menu_camera"-->
+            <!--android:title="Tạo đơn hàng"/>-->
+        <!--<item-->
+            <!--android:id="@+id/it_quan_ly_kho"-->
+            <!--android:icon="@drawable/ic_menu_gallery"-->
+            <!--android:title="Quản lý kho"/>-->
+        <item
+            android:id="@+id/it_log_in"
+            android:icon="@drawable/ic_face_black_48dp"
+            android:title="Log in"/>
+        <!--<item-->
+            <!--android:id="@+id/it_tap_ket_nhan"-->
+            <!--android:icon="@drawable/ic_menu_slideshow"-->
+            <!--android:title="Tập kết nhận"/>-->
+        <!--<item-->
+            <!--android:id="@+id/it_hang_ve_kho"-->
+            <!--android:icon="@drawable/ic_menu_share"-->
+            <!--android:title="Hàng về kho"/>-->
+    </group>
+</menu>

@@ -1,0 +1,78 @@
+{
+  "status": "success",
+  "warning": "Thành công||Th?t b?i",
+  "detail": [
+    {
+      "id": "Id 1",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_02",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    },
+    {
+      "id": "Id 2",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_03",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    },
+    {
+      "id": "Id 3",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    },
+    {
+      "id": "Id 4",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_03",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    },
+    {
+      "id": "Id 5",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    },
+    {
+      "id": "Id 6",
+      "tracking_id": "ID Tracking",
+      "id_nhan_vien_giao": "NV_GHOV_02",
+      "ten_nhan_vien_giao": "NV_GHOV_01",
+      "ten_nguoi_gui": "Nguyen Thi Hong A",
+      "ten_nguoi_nhan": "ID Tracking",
+      "sdt_nguoi_nhan": "1232434242",
+      "dia_chi_nhan": "Ba Ðình,Hà N?i",
+      "thu_ho": "200000",
+      "ghi_chu": "Ðây là bom"
+    }
+  ]
+}	

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:id="@+id/tv_ma_don_hang_hoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/lnThongTin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ma_don_hang_hoan"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/tv_thong_tin_nguoi_gui"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_thong_tin_nguoi_nhan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textColor="#ff0000"
+        android:textSize="12dp"
+        android:id="@+id/tv_ghi_chu_ly_do_hoan_hang"
+        android:layout_below="@+id/lnThongTin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

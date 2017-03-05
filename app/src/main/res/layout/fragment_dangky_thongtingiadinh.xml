@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:windowSoftInputMode="stateHidden">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingLeft="5dp"
+        android:text="II. Thông tin gia đình"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/llNguoiLienHe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/edtNameNguoiLienHe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Người liên hệ khi cần thiết"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp" />
+
+        <EditText
+            android:id="@+id/edtSdtNguoiLienHe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Sdt người liên hệ khi cần thiết"
+            android:inputType="phone"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_marginLeft="20dp"-->
+    <!--android:layout_marginRight="20dp"-->
+    <!--android:background="@color/black" />-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <RadioButton
+                    android:id="@+id/rbChuaKetHon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:layout_weight="1"
+                    android:text="Chưa Kết Hôn" />
+
+                <RadioButton
+                    android:id="@+id/rbDaKetHon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Đã Kết Hôn" />
+
+                <RadioButton
+                    android:id="@+id/rbKhac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Khác" />
+            </RadioGroup>
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:background="@color/black" />-->
+
+            <LinearLayout
+                android:id="@+id/llTTVoChong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/edtNameVoChong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Họ Tên Vợ / Chồng"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp" />
+
+                <EditText
+                    android:id="@+id/edtNgaySinhVoChong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Ngày Sinh Vợ/ Chồng"
+                    android:inputType="date"
+                    android:paddingLeft="5dp" />
+
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:background="@color/black" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edtNameCon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="Họ Tên Con"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="5dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:id="@+id/llTTCon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/edtNgaySinhCon"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:hint="Ngày Sinh Con"
+                                android:inputType="date"
+                                android:paddingLeft="5dp" />
+
+                            <RadioGroup
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="@dimen/margin_top"
+                                android:orientation="horizontal"
+                                android:weightSum="2">
+
+                                <RadioButton
+                                    android:id="@+id/rbNam"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:text="Nam" />
+
+                                <RadioButton
+                                    android:id="@+id/rbNu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Nữ" />
+
+                            </RadioGroup>
+                        </LinearLayout>
+
+
+                        <Button
+                            android:id="@+id/btnThemCon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:text="Thêm" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:background="@color/black" />-->
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/lvCon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></ListView>
+
+</LinearLayout>

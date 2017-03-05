@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F9BF11</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="item_listview0">#fafafa</color>
+    <color name="item_listview1">#fafafa</color>
+
+    <color name="background">#ff0707</color>
+    <color name="blue">#3F51B5</color>
+    <color name="blue_complete">#6666FF</color>
+    <color name="yellow">#F9BF11</color>
+    <color name="background_popup">#FFFFFF</color>
+    <color name="white">#fafafa</color>
+    <color name="red">#CC0000</color>
+    <color name="red_cancel">#CC0000</color>
+    <color name="black">#000000</color>
+    <color name="tim">#A349A4</color>
+
+
+    <color name="text_nguoigui">#000000</color>
+    <color name="text_nguoiden">#000000</color>
+    <color name="text_sdt">#000000</color>
+    <color name="text_madon">#000000</color>
+    <color name="text_diachi">#000000</color>
+    <color name="text_ghichu">#000000</color>
+    <color name="text_tien">#000000</color>
+    <color name="btn_hoanthanhdon">#FBC011</color>
+    <color name="btn_huy">#fafafa</color>
+    <color name="btn_save">#fafafa</color>
+    <color name="btn_chuyen_don">#FBC011</color>
+    <color name="btn_bando">#FBC011</color>
+
+
+    <color name="btn_call">#6666FF</color>
+    <color name="btn_sms">#A349A4</color>
+
+    <color name="mau_ghi">#CCCCCC</color>
+</resources>
