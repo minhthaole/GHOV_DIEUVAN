@@ -3,7 +3,6 @@ package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,11 +10,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -116,7 +115,8 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         tvTenNguoiNhan = (TextView) view.findViewById(R.id.tv_ten_nguoi_nhan_hangvekho);
         tvDiaChiNhan = (TextView) view.findViewById(R.id.tv_dia_chi_nguoi_nhan_hangvekho);
         tvGhiChu = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
-        final EditText editText = (EditText) view.findViewById(R.id.edt_sua_ghi_chu);
+        final EditText edtSuaGhiChu = (EditText) view.findViewById(R.id.edt_sua_ghi_chu);
+        final Boolean[] click = {false};
 
 
         final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan;
@@ -138,6 +138,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         btnXacNhan = (Button) view.findViewById(R.id.btn_xac_nhan_hangvekho);
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getSdtNguoiNhan_HHG();
         //
+        final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,10 +148,19 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
                 builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Xác nhận sửa!", Toast.LENGTH_SHORT).show();
-                        Dialog dialogGhiChu = new Dialog(context);
-                        dialogGhiChu.setContentView(R.layout.activity_sua_ghi_chu);
-                        dialogGhiChu.show();
+                        if (click[0] == false) {
+                            click[0] = true;
+                            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                            btnSuaGhiChu.setText("Xác nhận sửa");
+                            edtSuaGhiChu.setVisibility(View.VISIBLE);
+                            tvGhiChu.setVisibility(View.GONE);
+                        }
+                        click[0] = false;
+                        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                        tvGhiChu.setText(edtSuaGhiChu.getText());
+                        btnSuaGhiChu.setText("Sửa ghi chú");
+                        edtSuaGhiChu.setVisibility(View.GONE);
+                        tvGhiChu.setVisibility(View.VISIBLE);
                     }
                 });
                 builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
