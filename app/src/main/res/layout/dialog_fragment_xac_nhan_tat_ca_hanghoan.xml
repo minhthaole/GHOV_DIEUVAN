@@ -17,6 +17,7 @@
         android:text="Dissmis"/>
 
     <ListView
+        android:id="@+id/lv_hien_thi_xac_nhan_tat_ca"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 </LinearLayout>

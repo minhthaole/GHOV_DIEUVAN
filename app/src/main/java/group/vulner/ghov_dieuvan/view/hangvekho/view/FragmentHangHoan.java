@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +41,9 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class FragmentHangHoan extends Fragment {
-
+    public static ArrayList<DonHang_Hoan>lstDonHangHoan=new ArrayList<>();
     public static String key = "key";
     ExpandableListView my_expandableListView;
-    private List<DonHang_Hoan> hangVeKhosAA;
 
     public static FragmentHangHoan newInstace(int position) {
         FragmentHangHoan fragment = new FragmentHangHoan();
@@ -65,7 +65,7 @@ public class FragmentHangHoan extends Fragment {
 
     }
 
-   public class AsyntaskHangHoan extends AsyncTask<Void, Void, ArrayList<DonHang_Hoan>> {
+    public class AsyntaskHangHoan extends AsyncTask<Void, Void, ArrayList<DonHang_Hoan>> {
         Context context;
 
         public AsyntaskHangHoan(Context context) {
@@ -116,7 +116,6 @@ public class FragmentHangHoan extends Fragment {
                             donHangHoan.setDoiDiaChiNhan_Hoan(objectCurrent.getString("doi_dia_chi_nhan"));
                             donHangHoan.setTienThuHo_Hoan(objectCurrent.getString("tien_thu_ho"));
                             donHangHoan.setGhiChu_Hoan(objectCurrent.getString("ghi_chu"));
-
                             lstDonHangHoan.add(donHangHoan);
 //                            Log.e("donHangHoan", String.valueOf(lstDonHangHoan.size()));
                         }
@@ -136,7 +135,8 @@ public class FragmentHangHoan extends Fragment {
         //
         @Override
         protected void onPostExecute(ArrayList<DonHang_Hoan> donHangHoen) {
-            FragmentManager manager=getFragmentManager();
+            FragmentManager manager = getFragmentManager();
+            lstDonHangHoan=donHangHoen;
             if (donHangHoen.size() > 0) {
                 listNhanVienGiaoHang(donHangHoen);
                 List<NhanVienGiaoHang_Hoan> temp = listNhanVienGiaoHang(donHangHoen);
@@ -155,7 +155,7 @@ public class FragmentHangHoan extends Fragment {
                     }
                     hashMapDonHang_Hoan.put(temp.get(i), donHang_Hoan);
                     ExpandableListViewHangHoan expandableListViewHangHoan = new ExpandableListViewHangHoan(context, temp,
-                            hashMapDonHang_Hoan,manager);
+                            hashMapDonHang_Hoan, manager);
                     my_expandableListView.setAdapter(expandableListViewHangHoan);
                     my_expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                         int previousGroup = -1;
