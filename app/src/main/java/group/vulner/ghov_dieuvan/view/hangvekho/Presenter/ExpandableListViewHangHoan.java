@@ -3,7 +3,6 @@ package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,9 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import java.util.List;
 import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.Utils;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
+import group.vulner.ghov_dieuvan.view.MainActivity;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
@@ -47,7 +49,10 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
+    TextView tvTenNguoiGui, tvTenNguoiNhan, tvDiaChiNhan, tvGhiChu;
+    EditText edtSuaGhiChu;
     private static final int MY_REQUEST_CALL_PHONE = 123;
+    Boolean[] click = {false};
     Context context;
     List<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_Hoan_;
     HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan;
@@ -110,13 +115,21 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.don_hang_hanghengiao, parent, false);
         }
-        final TextView tvTenNguoiGui, tvTenNguoiNhan, tvDiaChiNhan, tvGhiChu;
+
+        LinearLayout lnGhiChu,lnChiChuContainsTxtEdt;
+        lnGhiChu= (LinearLayout) view.findViewById(R.id.ln_ghichu);
+        lnChiChuContainsTxtEdt= (LinearLayout) lnGhiChu.findViewById(R.id.lnGhiChuContainsTxtEdt);
         tvTenNguoiGui = (TextView) view.findViewById(R.id.tv_ten_nguoi_gui_hangvekho);
         tvTenNguoiNhan = (TextView) view.findViewById(R.id.tv_ten_nguoi_nhan_hangvekho);
         tvDiaChiNhan = (TextView) view.findViewById(R.id.tv_dia_chi_nguoi_nhan_hangvekho);
         tvGhiChu = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
-        final EditText editText = (EditText) view.findViewById(R.id.edt_sua_ghi_chu);
-
+//        edtSuaGhiChu = (EditText) view.findViewById(R.id.edt_sua_ghi_chu_123);
+//        edtSuaGhiChu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, "Ahihii", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan;
 
@@ -127,9 +140,7 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
 
         String ghiChuOgri = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getGhiChu_Hoan();
         String ghiChu = ghiChuOgri.replace("\\n", "\n");
-//        Log.e("id", hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getId_HHG());
         tvGhiChu.setText(ghiChu);
-
         final String listID = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getId_Hoan();
 
         btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
@@ -141,27 +152,11 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Sửa ghi chú!");
-                builder.setMessage("Nhấn xác nhận để sửa" + "\nNhấn hủy để trở lại!");
-                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Xác nhận sửa!", Toast.LENGTH_SHORT).show();
-                        Dialog dialogGhiChu = new Dialog(context);
-                        dialogGhiChu.setContentView(R.layout.activity_sua_ghi_chu);
-                        dialogGhiChu.show();
-                    }
-                });
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Hủy", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.show();
+
             }
         });
+
+        //
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -191,6 +186,9 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
             public void onClick(View view) {
                 AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
                 asyntaskXacNhanDonHangHoan.execute(listID);
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                context.startActivity(intent);
             }
         });
 
@@ -225,7 +223,7 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
                 entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
                 entity.addPart("list", new StringBody(Utils.encodeBase64(value)));
                 Log.e(" entity", entity.toString());
-                Log.e("sesion",Utils.encodeBase64(sesstion));
+                Log.e("sesion", Utils.encodeBase64(sesstion));
                 Log.e("id", Utils.encodeBase64(value).toString());
                 httpPost.setEntity(entity);
                 HttpResponse response = client.execute(httpPost);

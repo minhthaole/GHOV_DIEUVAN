@@ -11,11 +11,11 @@
         android:weightSum="6">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Người gửi: "/>
+            android:text="Người gửi: "
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_ten_nguoi_gui_hangvekho"
@@ -30,11 +30,11 @@
         android:weightSum="6">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Người nhận: "/>
+            android:text="Người nhận: "
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_ten_nguoi_nhan_hangvekho"
@@ -48,11 +48,11 @@
         android:weightSum="6">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Số điện thoại: "/>
+            android:text="Số điện thoại: "
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_sdt__nguoi_nhan_hangvekho"
@@ -66,11 +66,11 @@
         android:weightSum="6">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Địa chỉ: "/>
+            android:text="Địa chỉ: "
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_dia_chi_nguoi_nhan_hangvekho"
@@ -79,29 +79,40 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ln_ghichu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:weightSum="6">
 
         <TextView
-            android:textStyle="bold"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Chi chú: "/>
-        <FrameLayout
+            android:text="Chi chú: "
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/lnGhiChuContainsTxtEdt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4.5">
-        <EditText
-            android:visibility="gone"
-            android:id="@+id/edt_sua_ghi_chu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_ghi_chu_hangvekho"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/></FrameLayout>
+            android:layout_weight="4.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ghi_chu_hangvekho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -134,15 +145,17 @@
             android:text="@string/xac_nhan"
             android:textAllCaps="false"/>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="#90beff"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></LinearLayout>
+        android:orientation="horizontal"></LinearLayout>
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:background="#88ffae"
-        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
-        android:layout_height="1dp"></LinearLayout>
+        android:layout_height="1dp"
+        android:layout_marginTop="1dp"
+        android:background="#88ffae"
+        android:orientation="horizontal"></LinearLayout>
 </LinearLayout>

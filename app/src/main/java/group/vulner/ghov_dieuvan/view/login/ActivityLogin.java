@@ -182,7 +182,10 @@ public class ActivityLogin extends AppCompatActivity {
             requestPermissions(Utils.PERMISSION_REQUEST, 2909);
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(context, "Không thể trở lại\nĐăng nhập để tiếp tục!", Toast.LENGTH_SHORT).show();
+    }
     public void setStatusBarColor(View statusBar, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();

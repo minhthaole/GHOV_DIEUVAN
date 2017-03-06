@@ -155,12 +155,12 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
                             edtSuaGhiChu.setVisibility(View.VISIBLE);
                             tvGhiChu.setVisibility(View.GONE);
                         }
-                        click[0] = false;
+                        else{
                         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
                         tvGhiChu.setText(edtSuaGhiChu.getText());
                         btnSuaGhiChu.setText("Sửa ghi chú");
                         edtSuaGhiChu.setVisibility(View.GONE);
-                        tvGhiChu.setVisibility(View.VISIBLE);
+                        tvGhiChu.setVisibility(View.VISIBLE);}
                     }
                 });
                 builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {

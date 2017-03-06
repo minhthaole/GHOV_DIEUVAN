@@ -77,7 +77,7 @@ public class FragmentHangHoan extends Fragment {
             SharepreferenceManager manager = new SharepreferenceManager(context);
             String sesstion = manager.getSession("giá trị mặc định");
             ArrayList<DonHang_Hoan> lstDonHangHoan = new ArrayList<>();
-            String urlHangHenGiao = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
+            String urlHangHenGiao = "http://www.giaohangongvang.com/api/dieuvan/list-xac-nhan-hang-hoan";
 
             HttpClient client = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(urlHangHenGiao);
