@@ -5,6 +5,7 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.app.FragmentManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -123,7 +124,10 @@ public class Utils {
     public static String TYPE_CREATE_NEW_FILE = "create_new_file";
 
     public static String donnhan = "donnhan/";
-
+    public FragmentManager getFragmentManager(){
+        FragmentManager manager=getFragmentManager();
+        return manager;
+    }
     // for intent
     public static String INTENT_NHANVIEN = "INTENT_NHANVIEN";
     public static String INTENT_CUAHANG = "INTENT_CUAHANG";

@@ -142,34 +142,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Sửa ghi chú!");
-                builder.setMessage("Nhấn xác nhận để sửa" + "\nNhấn hủy để trở lại!");
-                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (click[0] == false) {
-                            click[0] = true;
-                            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-                            btnSuaGhiChu.setText("Xác nhận sửa");
-                            edtSuaGhiChu.setVisibility(View.VISIBLE);
-                            tvGhiChu.setVisibility(View.GONE);
-                        }
-                        else{
-                        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-                        tvGhiChu.setText(edtSuaGhiChu.getText());
-                        btnSuaGhiChu.setText("Sửa ghi chú");
-                        edtSuaGhiChu.setVisibility(View.GONE);
-                        tvGhiChu.setVisibility(View.VISIBLE);}
-                    }
-                });
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Hủy", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.show();
+
             }
         });
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {

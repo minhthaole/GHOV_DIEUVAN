@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,6 +136,7 @@ public class FragmentHangHoan extends Fragment {
         //
         @Override
         protected void onPostExecute(ArrayList<DonHang_Hoan> donHangHoen) {
+            FragmentManager manager=getFragmentManager();
             if (donHangHoen.size() > 0) {
                 listNhanVienGiaoHang(donHangHoen);
                 List<NhanVienGiaoHang_Hoan> temp = listNhanVienGiaoHang(donHangHoen);
@@ -153,7 +155,7 @@ public class FragmentHangHoan extends Fragment {
                     }
                     hashMapDonHang_Hoan.put(temp.get(i), donHang_Hoan);
                     ExpandableListViewHangHoan expandableListViewHangHoan = new ExpandableListViewHangHoan(context, temp,
-                            hashMapDonHang_Hoan);
+                            hashMapDonHang_Hoan,manager);
                     my_expandableListView.setAdapter(expandableListViewHangHoan);
                     my_expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                         int previousGroup = -1;

@@ -9,12 +9,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +34,8 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -49,6 +55,8 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
+    private FragmentManager Manager;
+    Utils utils = new Utils();
     TextView tvTenNguoiGui, tvTenNguoiNhan, tvDiaChiNhan, tvGhiChu;
     EditText edtSuaGhiChu;
     private static final int MY_REQUEST_CALL_PHONE = 123;
@@ -58,10 +66,11 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
     HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan;
 
     public ExpandableListViewHangHoan(Context context, List<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_Hoan_,
-                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan) {
+                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan,FragmentManager Manager) {
         this.context = context;
         this.lstNhanVienGiaoHang_Hoan_ = lstNhanVienGiaoHang_Hoan_;
         this.hashMapDonHang_Hoan = hashMapDonHang_Hoan;
+        this.Manager=Manager;
     }
 
     @Override
@@ -116,47 +125,142 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.don_hang_hanghengiao, parent, false);
         }
 
-        LinearLayout lnGhiChu,lnChiChuContainsTxtEdt;
-        lnGhiChu= (LinearLayout) view.findViewById(R.id.ln_ghichu);
-        lnChiChuContainsTxtEdt= (LinearLayout) lnGhiChu.findViewById(R.id.lnGhiChuContainsTxtEdt);
+        LinearLayout lnGhiChu, lnChiChuContainsTxtEdt;
+        lnGhiChu = (LinearLayout) view.findViewById(R.id.ln_ghichu);
         tvTenNguoiGui = (TextView) view.findViewById(R.id.tv_ten_nguoi_gui_hangvekho);
         tvTenNguoiNhan = (TextView) view.findViewById(R.id.tv_ten_nguoi_nhan_hangvekho);
         tvDiaChiNhan = (TextView) view.findViewById(R.id.tv_dia_chi_nguoi_nhan_hangvekho);
         tvGhiChu = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
-//        edtSuaGhiChu = (EditText) view.findViewById(R.id.edt_sua_ghi_chu_123);
-//        edtSuaGhiChu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "Ahihii", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        edtSuaGhiChu = (EditText) view.findViewById(R.id.edtChinhSuaGhiChu);
 
-        final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan;
+        final FragmentManager manager = new FragmentManager() {
+            @Override
+            public FragmentTransaction beginTransaction() {
+                return null;
+            }
 
-        tvTenNguoiGui.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getId_Hoan());
+            @Override
+            public boolean executePendingTransactions() {
+                return false;
+            }
+
+            @Override
+            public Fragment findFragmentById(@IdRes int id) {
+                return null;
+            }
+
+            @Override
+            public Fragment findFragmentByTag(String tag) {
+                return null;
+            }
+
+            @Override
+            public void popBackStack() {
+
+            }
+
+            @Override
+            public boolean popBackStackImmediate() {
+                return false;
+            }
+
+            @Override
+            public void popBackStack(String name, int flags) {
+
+            }
+
+            @Override
+            public boolean popBackStackImmediate(String name, int flags) {
+                return false;
+            }
+
+            @Override
+            public void popBackStack(int id, int flags) {
+
+            }
+
+            @Override
+            public boolean popBackStackImmediate(int id, int flags) {
+                return false;
+            }
+
+            @Override
+            public int getBackStackEntryCount() {
+                return 0;
+            }
+
+            @Override
+            public BackStackEntry getBackStackEntryAt(int index) {
+                return null;
+            }
+
+            @Override
+            public void addOnBackStackChangedListener(OnBackStackChangedListener listener) {
+
+            }
+
+            @Override
+            public void removeOnBackStackChangedListener(OnBackStackChangedListener listener) {
+
+            }
+
+            @Override
+            public void putFragment(Bundle bundle, String key, Fragment fragment) {
+
+            }
+
+            @Override
+            public Fragment getFragment(Bundle bundle, String key) {
+                return null;
+            }
+
+            @Override
+            public List<Fragment> getFragments() {
+                return null;
+            }
+
+            @Override
+            public Fragment.SavedState saveFragmentInstanceState(Fragment f) {
+                return null;
+            }
+
+            @Override
+            public boolean isDestroyed() {
+                return false;
+            }
+
+            @Override
+            public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
+
+            }
+        };
+        final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan, btnNhanTatCa;
+
+        tvTenNguoiGui.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getIdKhachHang_Hoan());
         tvTenNguoiNhan.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getTenNguoiNhanHang_Hoan());
 
         tvDiaChiNhan.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getDoiDiaChiNhan_Hoan());
 
         String ghiChuOgri = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getGhiChu_Hoan();
-        String ghiChu = ghiChuOgri.replace("\\n", "\n");
+        final String ghiChu = ghiChuOgri.replace("\\n", "\n");
         tvGhiChu.setText(ghiChu);
         final String listID = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getId_Hoan();
 
         btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
         btnGoiNguoiNhan = (Button) view.findViewById(R.id.btn_goi_nguoi_nhan_hangvekho);
         btnXacNhan = (Button) view.findViewById(R.id.btn_xac_nhan_hangvekho);
+        btnNhanTatCa = (Button) view.findViewById(R.id.btn_nhan_tat_ca);
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get
                 (childPosition).getSdtNguoiNhan_Hoan();
-        //
+        //Button ghi chu
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(context, "" + ghiChu, Toast.LENGTH_SHORT).show();
             }
         });
 
-        //
+        // button goi nguoi nhan
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -182,15 +286,28 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
                 builder.show();
             }
         });
-        btnXacNhan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
-                asyntaskXacNhanDonHangHoan.execute(listID);
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                context.startActivity(intent);
+
+        // Button chon tat ca
+        btnNhanTatCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Bạn vừa nhấn chọn " + ghiChu, Toast.LENGTH_SHORT).show();
+                FragmentDialogChonTatCaHangHoan fragmentDialogChonTatCaHangHoan = new FragmentDialogChonTatCaHangHoan();
+                fragmentDialogChonTatCaHangHoan.show(Manager, "This is may dialogfragment");
             }
         });
+        // Button xac nhan
+        btnXacNhan.setOnClickListener(new View.OnClickListener() {
+                                          public void onClick(View view) {
+                                              AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
+                                              asyntaskXacNhanDonHangHoan.execute(listID);
+                                              Intent intent = new Intent(context, MainActivity.class);
+                                              intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                              context.startActivity(intent);
+                                          }
+                                      }
+
+        );
 
         return view;
     }

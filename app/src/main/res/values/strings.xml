@@ -82,9 +82,10 @@
     <string name="dong_y_voi_dieu_khoan_su_dung_dich_vu_cua_GiaoHangOngVang.vn">Tôi đã đọc và đồng ý với điều khoản sử dụng dịch vụ của Giaohangongvang.vn</string>
     <string name="tao_don">Tạo đơn</string>
     <string name="thong_tin_nguoi_nhan"><u>THÔNG TIN NGƯỜI NHẬN</u></string>
-    <string name="btn_goi_nguoi_gui">Gọi người gửi</string>
+    <string name="btn_goi_nguoi_nhan">Gọi người nhận</string>
     <string name="xac_nhan">Xác nhận</string>
-    <string name="sua_ghi_chu">Sửa ghi chú</string>
+    <string name="sua_ghi_chu">Ghi chú</string>
+    <string name="nhan_tat_ca">Nhận tất cả</string>
 
     <string-array name="danh_sach_thanh_pho">
 

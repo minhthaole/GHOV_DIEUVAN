@@ -106,12 +106,14 @@
                 android:visibility="visible"/>
 
             <EditText
+                android:id="@+id/edtChinhSuaGhiChu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false"/>
+                android:focusableInTouchMode="false"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -127,14 +129,22 @@
             android:layout_weight="1"
             android:text="@string/sua_ghi_chu"
             android:textAllCaps="false"/>
+        <!--btn_goi_nguoi_nhan_hangvekho-->
 
         <Button
             android:id="@+id/btn_goi_nguoi_nhan_hangvekho"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btn_goi_nguoi_gui"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:text="@string/btn_goi_nguoi_nhan"/>
+        <Button
+            android:id="@+id/btn_nhan_tat_ca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="@string/nhan_tat_ca"/>
 
         <Button
 

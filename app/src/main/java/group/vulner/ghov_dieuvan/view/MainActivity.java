@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 //                getSupportActionBar().setTitle("Tạo đơn hàng");
 //                break;
 //            }
-
+//
 //            case R.id.it_quan_ly_kho: {
 //                FragmentManager manager = getSupportFragmentManager();
 //                FragmentTransaction transaction = manager.beginTransaction();
