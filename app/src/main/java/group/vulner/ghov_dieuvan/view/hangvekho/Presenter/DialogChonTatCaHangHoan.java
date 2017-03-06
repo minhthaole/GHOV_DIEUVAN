@@ -22,7 +22,7 @@ import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHoan.lst
  * Created by TuTV on 3/6/2017.
  */
 
-public class FragmentDialogChonTatCaHangHoan extends android.support.v4.app.DialogFragment {
+public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragment {
     ArrayList<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_hoan = new ArrayList<>();
     NhanVienGiaoHang_Hoan nhanVienGiaoHang_hoan = new NhanVienGiaoHang_Hoan();
     Context context;

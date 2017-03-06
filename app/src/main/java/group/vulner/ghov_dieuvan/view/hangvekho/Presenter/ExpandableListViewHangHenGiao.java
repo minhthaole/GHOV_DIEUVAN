@@ -179,8 +179,8 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         btnXacNhanTatCa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentDialogChonTatCaHangHenGiao fragmentDialogChonTatCaHangHenGiao = new FragmentDialogChonTatCaHangHenGiao();
-                fragmentDialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
+                DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
+                dialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
 
             }
         });
