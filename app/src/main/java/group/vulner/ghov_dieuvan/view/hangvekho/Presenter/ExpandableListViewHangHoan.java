@@ -66,11 +66,11 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
     HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan;
 
     public ExpandableListViewHangHoan(Context context, List<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_Hoan_,
-                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan,FragmentManager Manager) {
+                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan, FragmentManager Manager) {
         this.context = context;
         this.lstNhanVienGiaoHang_Hoan_ = lstNhanVienGiaoHang_Hoan_;
         this.hashMapDonHang_Hoan = hashMapDonHang_Hoan;
-        this.Manager=Manager;
+        this.Manager = Manager;
     }
 
     @Override
@@ -293,7 +293,9 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 Toast.makeText(context, "Bạn vừa nhấn chọn " + ghiChu, Toast.LENGTH_SHORT).show();
                 FragmentDialogChonTatCaHangHoan fragmentDialogChonTatCaHangHoan = new FragmentDialogChonTatCaHangHoan();
+//                fragmentDialogChonTatCaHangHoan.getDialog().getWindow().setLayout(800, 480);
                 fragmentDialogChonTatCaHangHoan.show(Manager, "This is may dialogfragment");
+
             }
         });
         // Button xac nhan

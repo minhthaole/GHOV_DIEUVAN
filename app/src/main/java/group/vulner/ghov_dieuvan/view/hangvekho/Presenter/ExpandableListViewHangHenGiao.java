@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,15 +49,19 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
+    private FragmentManager fragmentManager;
     private static final int MY_REQUEST_CALL_PHONE = 123;
     Context context;
     List<NhanVienGiaohang_HHG> lstNhanVienGiaoHang_HHG_;
     HashMap<NhanVienGiaohang_HHG, List<DonHang_HHG>> hashMapDonHang_HHG;
 
-    public ExpandableListViewHangHenGiao(Context context, List<NhanVienGiaohang_HHG> lstNhanVienGiaoHang_HHG_, HashMap<NhanVienGiaohang_HHG, List<DonHang_HHG>> hashMapDonHang_HHG) {
+
+    public ExpandableListViewHangHenGiao(Context context, List<NhanVienGiaohang_HHG> lstNhanVienGiaoHang_HHG_,
+                                         HashMap<NhanVienGiaohang_HHG, List<DonHang_HHG>> hashMapDonHang_HHG, FragmentManager fragmentManager) {
         this.context = context;
         this.lstNhanVienGiaoHang_HHG_ = lstNhanVienGiaoHang_HHG_;
         this.hashMapDonHang_HHG = hashMapDonHang_HHG;
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -119,7 +124,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         final Boolean[] click = {false};
 
 
-        final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan;
+        final Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan, btnXacNhanTatCa;
 
         tvTenNguoiGui.setText(hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getIdKhachHang_HHG());
         tvTenNguoiNhan.setText(hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getTenNguoiNhan_HHG());
@@ -136,6 +141,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
         btnGoiNguoiNhan = (Button) view.findViewById(R.id.btn_goi_nguoi_nhan_hangvekho);
         btnXacNhan = (Button) view.findViewById(R.id.btn_xac_nhan_hangvekho);
+        btnXacNhanTatCa = (Button) view.findViewById(R.id.btn_nhan_tat_ca);
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getSdtNguoiNhan_HHG();
         //
         final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -168,6 +174,14 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
                     }
                 });
                 builder.show();
+            }
+        });
+        btnXacNhanTatCa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentDialogChonTatCaHangHenGiao fragmentDialogChonTatCaHangHenGiao = new FragmentDialogChonTatCaHangHenGiao();
+                fragmentDialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
+
             }
         });
         btnXacNhan.setOnClickListener(new View.OnClickListener() {

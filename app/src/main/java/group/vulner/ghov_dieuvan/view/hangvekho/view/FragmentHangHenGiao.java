@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
 public class FragmentHangHenGiao extends Fragment {
     ExpandableListView my_expandableListView;
     public static String key = "key";
-
+    public static ArrayList<DonHang_HHG> lstDonHang_HHG;
     public static FragmentHangHenGiao newInstace(int position) {
         FragmentHangHenGiao fragment = new FragmentHangHenGiao();
         Bundle bundle = new Bundle();
@@ -134,6 +135,8 @@ public class FragmentHangHenGiao extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<DonHang_HHG> donHangHoen){
             if (donHangHoen.size() > 0) {
+                FragmentManager manager=getFragmentManager();
+                lstDonHang_HHG=donHangHoen;
                 listNhanVienGiaoHang(donHangHoen);
                 List<NhanVienGiaohang_HHG> temp = listNhanVienGiaoHang(donHangHoen);
                 HashMap<NhanVienGiaohang_HHG, List<DonHang_HHG>> hashMapDonHang_HHG = new HashMap<>();
@@ -151,7 +154,7 @@ public class FragmentHangHenGiao extends Fragment {
                     }
                     hashMapDonHang_HHG.put(temp.get(i), donHang_HHG_s);
                     ExpandableListViewHangHenGiao expandableListViewHangHenGiao = new ExpandableListViewHangHenGiao(getContext(),
-                            temp, hashMapDonHang_HHG);
+                            temp, hashMapDonHang_HHG,manager);
                     my_expandableListView.setAdapter(expandableListViewHangHenGiao);
                     my_expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                         int previousGroup = -1;

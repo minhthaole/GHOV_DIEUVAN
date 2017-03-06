@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:minHeight="450dp"
+              android:minWidth="1000dp"
+              android:orientation="vertical"
+              android:weightSum="9">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="25sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Nhận tất cả đơn hoàn!"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/lv_hien_thi_xac_nhan_tat_ca"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"></ListView>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btn_cancel_dialog_hanghoan"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cancel"/>
+
+        <Button
+            android:id="@+id/btn_submit_dialog_hoan"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="submit"/>
+    </LinearLayout>
+</LinearLayout>
