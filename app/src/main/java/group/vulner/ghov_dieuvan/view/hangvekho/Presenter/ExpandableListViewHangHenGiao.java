@@ -182,19 +182,36 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
                 dialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
-                for(int a=0;a<lstDonHang_HHG.size();a++){
+                AsyntaskXacNhanDonHangHenGiaoA asyntaskXacNhanDonHangHenGiaoA = new AsyntaskXacNhanDonHangHenGiaoA(context);
 
+                for (int i = 0; i < lstDonHang_HHG.size(); i++) {
+                    Toast.makeText(context, "" + lstDonHang_HHG.get(i).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                AsyntaskXacNhanDonHangHenGiao asyntaskXacNhanDonHangHenGiao = new AsyntaskXacNhanDonHangHenGiao(context);
-                asyntaskXacNhanDonHangHenGiao.execute(listID);
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                context.startActivity(intent);
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                dialog.setMessage("Xác nhận nhận đơn!");
+                dialog.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AsyntaskXacNhanDonHangHenGiao asyntaskXacNhanDonHangHenGiao = new AsyntaskXacNhanDonHangHenGiao(context);
+                        asyntaskXacNhanDonHangHenGiao.execute(listID);
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        context.startActivity(intent);
+                    }
+                });
+                dialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog.show();
+
+
+//
             }
         });
 
@@ -210,6 +227,69 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         Context context;
 
         public AsyntaskXacNhanDonHangHenGiao(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            SharepreferenceManager manager = new SharepreferenceManager(context);
+            String sesstion = manager.getSession("giá trị mặc định");
+            String GiaTriTraVe = "";
+            String value = params[0];
+            String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
+            HttpClient client = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(UrlXacNhan);
+            MultipartEntity entity = new MultipartEntity();
+
+//            String sessionBase64 = "YWVhMDQzNWNmNTVkMzI2ZmYyOWY4YzA2NzNmYTllNmU=";
+            Log.e("id xac nhan", value);
+            try {
+                entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
+                entity.addPart("list", new StringBody(Utils.encodeBase64(value)));
+                Log.e(" entity", entity.toString());
+                httpPost.setEntity(entity);
+                HttpResponse response = client.execute(httpPost);
+                Log.i("response", entity.toString() + "");
+                if (response == null
+                    || response.getStatusLine().getStatusCode() != 200) {
+                    return null;
+                } else {
+                    ByteArrayOutputStream DataOut = new ByteArrayOutputStream();
+                    response.getEntity().writeTo(DataOut);
+                    GiaTriTraVe = DataOut.toString();
+                    Log.e("request hengiao", GiaTriTraVe.toString());
+                    DataOut.close();
+                }
+
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return GiaTriTraVe;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.e("xac nhan hen giao: ", s);
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
+            try {
+                if (CheckRespone(s)) {
+                    Toast.makeText(context, "Xác nhận hẹn giao" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Xác nhận thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public class AsyntaskXacNhanDonHangHenGiaoA extends AsyncTask<String, Void, String> {
+        Context context;
+
+        public AsyntaskXacNhanDonHangHenGiaoA(Context context) {
             this.context = context;
         }
 

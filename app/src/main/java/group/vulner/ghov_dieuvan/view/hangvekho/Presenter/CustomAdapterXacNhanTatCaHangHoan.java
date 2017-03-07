@@ -1,6 +1,7 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,11 @@ public class CustomAdapterXacNhanTatCaHangHoan extends ArrayAdapter<DonHang_Hoan
         view = LayoutInflater.from(context).inflate(R.layout.custom_listview_nhan_tat_ca_hang_hoan, parent, false);
         TextView tvHienThiThongTinXacNhanTatCa = (TextView) view.findViewById(R.id.tv_hienthi_diachi_thanhpho_xacnhantatca);
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.ck_tick_xacnhantatca);
+        Bundle bundle = new Bundle();
+        int checkAll = bundle.getInt("checkAll");
+        if (checkAll == 0) {
+            checkBox.setChecked(true);
+        }
         tvHienThiThongTinXacNhanTatCa.setText(lstDonHangHang_Hoan.get(position).getTenNguoiNhanHang_Hoan()
                                               +"\n"+lstDonHangHang_Hoan.get(position).getDoiDiaChiNhan_Hoan());
         return view;

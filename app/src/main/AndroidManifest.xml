@@ -32,9 +32,6 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.hangvekho.view.SuaGhiChu">
-        </activity>
-        <!--<activity android:name=".view.Fra"-->
     </application>
 
 </manifest>

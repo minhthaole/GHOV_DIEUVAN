@@ -147,12 +147,11 @@
             android:text="@string/nhan_tat_ca"/>
 
         <Button
-
             android:id="@+id/btn_xac_nhan_hangvekho"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/xac_nhan"
+            android:text="@string/nhan_don"
             android:textAllCaps="false"/>
     </LinearLayout>
 

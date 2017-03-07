@@ -51,8 +51,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
                 Toast.makeText(getContext(), "Cảm ơn bạn đã push lên nhé ^^!", Toast.LENGTH_SHORT).show();
             }
         });
-        Log.e("size", String.valueOf(lstNhanVienGiaoHang_hoan.size()));
-        Log.e("size", String.valueOf(nhanVienGiaoHang_hoan.getIdNhanVienGiaoHang_HHG()));
+
         CustomAdapterXacNhanTatCaHangHoan arrayAdapter = new CustomAdapterXacNhanTatCaHangHoan(getContext(), R.layout
                 .custom_listview_nhan_tat_ca_hang_hoan, lstDonHangHoan);
         lv_hien_thi_xac_nhan_tat_ca = (ListView) view.findViewById(R.id.lv_hien_thi_xac_nhan_tat_ca);

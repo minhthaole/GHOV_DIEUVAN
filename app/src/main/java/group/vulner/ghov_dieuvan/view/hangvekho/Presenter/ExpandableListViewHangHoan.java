@@ -301,11 +301,24 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         // Button xac nhan
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
                                           public void onClick(View view) {
-                                              AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
-                                              asyntaskXacNhanDonHangHoan.execute(listID);
-                                              Intent intent = new Intent(context, MainActivity.class);
-                                              intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                              context.startActivity(intent);
+                                              final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                                              dialog.setMessage("Xác nhận nhận đơn!");
+                                              dialog.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(DialogInterface dialog, int which) {
+                                                      AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
+                                                      asyntaskXacNhanDonHangHoan.execute(listID);
+                                                      Intent intent = new Intent(context, MainActivity.class);
+                                                      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                      context.startActivity(intent);
+                                                  }
+                                              });
+                                              dialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(DialogInterface dialog, int which) {
+                                                  }
+                                              });
+                                              dialog.show();
                                           }
                                       }
 

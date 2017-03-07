@@ -1,6 +1,7 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,20 +38,24 @@ public class CustomAdapterXacNhanTatCaHangHenGiao extends ArrayAdapter<DonHang_H
         view = LayoutInflater.from(context).inflate(R.layout.custom_listview_nhan_tat_ca_hanghengiao, parent, false);
         TextView tvHienThiThongTinXacNhanTatCa = (TextView) view.findViewById(R.id.tv_hienthi_diachi_thanhpho_xacnhantatca_hanghengiao);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.ck_tick_xacnhantatca_hanghengiao);
-//        if( checkBox.isChecked()){
-//            Toast.makeText(context, "Bạn vừa nhấn chọn đơn hàng có id là "+lstDonHangHang_HHG.get(position).getId_HHG()+"\nTên " +
-//                                    "người nhận là "+lstDonHangHang_HHG.get(position).getTenNguoiNhan_HHG(),
-//                    Toast
-//                    .LENGTH_SHORT).show();
-//        }
+
+        Bundle bundle = new Bundle();
+        int clicked = bundle.getInt("aa");
+        if (clicked == 0) {
+            checkBox.setChecked(true);
+        }
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (checkBox.isChecked()) {
-                    Toast.makeText(context, "Bạn vừa nhấn chọn đơn hàng có id là " + lstDonHangHang_HHG.get(position).getId_HHG() + "\nTên " +
-                                            "người nhận là " + lstDonHangHang_HHG.get(position).getTenNguoiNhan_HHG(),
-                            Toast
-                                    .LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getContext(), DialogChonTatCaHangHenGiao.class);
+//                    intent.putExtra("checked", checkBox.isChecked());
+//                    context.startActivity(intent);
+                    Bundle bundleCheckBox = new Bundle();
+                    bundleCheckBox.putString("idCheckBox", lstDonHangHang_HHG.get(position).getId_HHG());
+                    DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
+                    dialogChonTatCaHangHenGiao.setArguments(bundleCheckBox);
                 }
             }
         });
