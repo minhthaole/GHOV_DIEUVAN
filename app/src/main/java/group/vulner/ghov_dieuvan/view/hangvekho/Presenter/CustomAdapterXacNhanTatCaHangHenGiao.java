@@ -39,19 +39,10 @@ public class CustomAdapterXacNhanTatCaHangHenGiao extends ArrayAdapter<DonHang_H
         TextView tvHienThiThongTinXacNhanTatCa = (TextView) view.findViewById(R.id.tv_hienthi_diachi_thanhpho_xacnhantatca_hanghengiao);
         final CheckBox checkBox = (CheckBox) view.findViewById(R.id.ck_tick_xacnhantatca_hanghengiao);
 
-        Bundle bundle = new Bundle();
-        int clicked = bundle.getInt("aa");
-        if (clicked == 0) {
-            checkBox.setChecked(true);
-        }
-
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (checkBox.isChecked()) {
-//                    Intent intent = new Intent(getContext(), DialogChonTatCaHangHenGiao.class);
-//                    intent.putExtra("checked", checkBox.isChecked());
-//                    context.startActivity(intent);
                     Bundle bundleCheckBox = new Bundle();
                     bundleCheckBox.putString("idCheckBox", lstDonHangHang_HHG.get(position).getId_HHG());
                     DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();

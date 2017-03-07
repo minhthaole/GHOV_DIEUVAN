@@ -20,8 +20,6 @@ import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.
  */
 
 public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFragment {
-    //    ArrayList<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_hoan = new ArrayList<>();
-//    NhanVienGiaoHang_Hoan nhanVienGiaoHang_hoan = new NhanVienGiaoHang_Hoan();
     Context context;
     Button btnCancelDiaLogHangHenGiao, btnSubmitDialogHangHenGiao, btnSubmitAllDialogHangHenGiao;
     ListView lv_hien_thi_xac_nhan_tat_ca_hanghengiao;
@@ -30,11 +28,6 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.dialogfragment_nhan_tat_ca_hanghengiao, container, false);
-//
-//        Bundle bundle=new Bundle();
-//        String dataChecked =bundle.getString("idCheckBox");
-//        Log.e("id checked", dataChecked.toString());
-//
 
         getDialog().setTitle("This is title dialog");
 

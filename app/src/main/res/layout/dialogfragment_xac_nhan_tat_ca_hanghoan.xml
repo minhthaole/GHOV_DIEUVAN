@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="3"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal"
         >
 
@@ -38,13 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Hủy"/>
-        <Button
-            android:id="@+id/btn_submitall_dialog_hanghoan"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Chọn tất cả"/>
 
         <Button
             android:id="@+id/btn_submit_dialog_hoan"

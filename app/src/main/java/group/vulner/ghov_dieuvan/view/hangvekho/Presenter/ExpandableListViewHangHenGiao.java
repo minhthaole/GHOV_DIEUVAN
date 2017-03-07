@@ -182,11 +182,7 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
                 dialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
-//                AsyntaskXacNhanDonHangHenGiaoA asyntaskXacNhanDonHangHenGiaoA = new AsyntaskXacNhanDonHangHenGiaoA(context);
-//
-//                for (int i = 0; i < lstDonHang_HHG.size(); i++) {
-//                    Toast.makeText(context, "" + lstDonHang_HHG.get(i).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT).show();
-//                }
+
             }
         });
         btnXacNhan.setOnClickListener(new View.OnClickListener() {

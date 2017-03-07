@@ -53,25 +53,12 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
         View view = inflater.inflate(R.layout.dialogfragment_xac_nhan_tat_ca_hanghoan, container, false);
         getDialog().setTitle("This is title dialog");
         btnCancel = (Button) view.findViewById(R.id.btn_cancel_dialog_hanghoan);
-        btnSubmitAll = (Button) view.findViewById(R.id.btn_submitall_dialog_hanghoan);
+
         btnSubmit = (Button) view.findViewById(R.id.btn_submit_dialog_hoan);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
-            }
-        });
-        btnSubmitAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                int minst = bundle.getInt("minst");
-//                if (minst == 0) {
-//
-//                }
-                AsyntaskXacNhanTatCaDonHangDonHang_Hoan asyntaskXacNhanTatCaDonHangDonHang_hoan = new
-                        AsyntaskXacNhanTatCaDonHangDonHang_Hoan(getContext());
-                asyntaskXacNhanTatCaDonHangDonHang_hoan.execute();
             }
         });
         btnSubmit.setOnClickListener(new View.OnClickListener() {
