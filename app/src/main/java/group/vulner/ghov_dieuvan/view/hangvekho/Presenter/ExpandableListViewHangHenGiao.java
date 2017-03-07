@@ -43,6 +43,7 @@ import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaohang_HHG;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
+import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.lstDonHang_HHG;
 
 /**
  * Created by TuTV on 3/2/2017.
@@ -138,19 +139,19 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
 
         final String listID = hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getId_HHG();
 
-        btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
+//        btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
         btnGoiNguoiNhan = (Button) view.findViewById(R.id.btn_goi_nguoi_nhan_hangvekho);
         btnXacNhan = (Button) view.findViewById(R.id.btn_xac_nhan_hangvekho);
         btnXacNhanTatCa = (Button) view.findViewById(R.id.btn_nhan_tat_ca);
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_HHG.get(lstNhanVienGiaoHang_HHG_.get(groupPosition)).get(childPosition).getSdtNguoiNhan_HHG();
         //
         final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -181,6 +182,9 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
                 dialogChonTatCaHangHenGiao.show(fragmentManager, "Dialog chọn tất cả hàng hẹn giao!");
+                for(int a=0;a<lstDonHang_HHG.size();a++){
+
+                }
 
             }
         });

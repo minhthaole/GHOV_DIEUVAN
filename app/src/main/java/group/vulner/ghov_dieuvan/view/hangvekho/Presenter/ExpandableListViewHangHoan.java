@@ -246,19 +246,19 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         tvGhiChu.setText(ghiChu);
         final String listID = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getId_Hoan();
 
-        btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
+//        btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
         btnGoiNguoiNhan = (Button) view.findViewById(R.id.btn_goi_nguoi_nhan_hangvekho);
         btnXacNhan = (Button) view.findViewById(R.id.btn_xac_nhan_hangvekho);
         btnNhanTatCa = (Button) view.findViewById(R.id.btn_nhan_tat_ca);
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get
                 (childPosition).getSdtNguoiNhan_Hoan();
         //Button ghi chu
-        btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "" + ghiChu, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, "" + ghiChu, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         // button goi nguoi nhan
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {
