@@ -25,7 +25,6 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
     Context context;
     Button btnCancelDiaLogHangHenGiao, btnSubmitDialogHangHenGiao, btnSubmitAllDialogHangHenGiao;
     ListView lv_hien_thi_xac_nhan_tat_ca_hanghengiao;
-    ExpandableListViewHangHenGiao.AsyntaskXacNhanDonHangHenGiaoA asyntaskXacNhanDonHangHenGiaoA;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -14,13 +14,13 @@
         android:weightSum="8">
 
         <TextView
-            android:id="@+id/tv_hienthi_diachi_thanhpho_xacnhantatca"
+            android:id="@+id/tv_hienthi_diachi_thanhpho_hanghoan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"/>
 
         <CheckBox
-            android:id="@+id/ck_tick_xacnhantatca"
+            android:id="@+id/ck_tick_xacnhantatca_hanghoan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

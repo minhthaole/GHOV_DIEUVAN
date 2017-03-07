@@ -293,7 +293,7 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 Toast.makeText(context, "Bạn vừa nhấn chọn " + ghiChu, Toast.LENGTH_SHORT).show();
                 DialogChonTatCaHangHoan dialogChonTatCaHangHoan = new DialogChonTatCaHangHoan();
-//                dialogChonTatCaHangHoan.getDialog().getWindow().setLayout(800, 480);
+//
                 dialogChonTatCaHangHoan.show(Manager, "This is may dialogfragment");
 
             }
