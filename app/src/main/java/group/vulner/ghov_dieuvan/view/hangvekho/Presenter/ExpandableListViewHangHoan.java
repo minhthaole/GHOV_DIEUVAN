@@ -3,6 +3,7 @@ package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -334,6 +335,16 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
 
     public class AsyntaskXacNhanDonHangHoan extends AsyncTask<String, Void, String> {
         Context context;
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("Đang thực hiện");
+            progressDialog.show();
+
+        }
 
         public AsyntaskXacNhanDonHangHoan(Context context) {
             this.context = context;
@@ -381,16 +392,22 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            if (s != null) {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {
+                    Log.e("xac nhan hang hoan", s);
                     Toast.makeText(context, "Xác nhận hàng hoàn" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Xác nhận thất bại!", Toast.LENGTH_SHORT).show();
+                    Log.e("xac nhan hang hoan", s);
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
+            }
+            } else {
+                Toast.makeText(context, "Không thành công", Toast.LENGTH_SHORT).show();
             }
         }
     }
