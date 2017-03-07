@@ -1,7 +1,6 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 
 public class CustomAdapterXacNhanTatCaHangHoan extends ArrayAdapter<DonHang_Hoan> {
     static String id_HHG = null;
-    static List<String> lstIDChecked = new ArrayList<>();
+    static List<String> lstIDChecked_Hoan = new ArrayList<>();
     private Context context;
 
     private int resource;
@@ -47,7 +45,9 @@ public class CustomAdapterXacNhanTatCaHangHoan extends ArrayAdapter<DonHang_Hoan
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    lstIDChecked.add(lstDonHangHang_Hoan.get(position).getId_Hoan());
+                    lstIDChecked_Hoan.add(lstDonHangHang_Hoan.get(position).getId_Hoan());
+                } else {
+                    lstIDChecked_Hoan.remove(lstDonHangHang_Hoan.get(position).getId_Hoan());
                 }
             }
         });

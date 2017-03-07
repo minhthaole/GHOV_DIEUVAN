@@ -32,7 +32,7 @@ import group.vulner.ghov_dieuvan.view.MainActivity;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
-import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.CustomAdapterXacNhanTatCaHangHoan.lstIDChecked;
+import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.CustomAdapterXacNhanTatCaHangHoan.lstIDChecked_Hoan;
 import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHoan.lstDonHangHoan;
 
 /**
@@ -64,7 +64,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "ABC" + lstIDChecked.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "ABC" + lstIDChecked_Hoan.size(), Toast.LENGTH_SHORT).show();
                 AsyntaskXacNhanTatCaDonHangDonHang_Hoan asyntaskXacNhanTatCaDonHangDonHang_hoan = new
                         AsyntaskXacNhanTatCaDonHangDonHang_Hoan(getContext());
                 asyntaskXacNhanTatCaDonHangDonHang_hoan.execute();
@@ -94,7 +94,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
             SharepreferenceManager manager = new SharepreferenceManager(context);
             String sesstion = manager.getSession("giá trị mặc định");
             String GiaTriTraVe = null;
-            for (int i = 0; i < lstIDChecked.size(); i++) {
+            for (int i = 0; i < lstIDChecked_Hoan.size(); i++) {
                 GiaTriTraVe = "";
                 String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hoan-ve-kho";
                 HttpClient client = new DefaultHttpClient();
@@ -103,7 +103,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
 
                 try {
                     entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
-                    entity.addPart("list", new StringBody(Utils.encodeBase64(lstIDChecked.get(i))));
+                    entity.addPart("list", new StringBody(Utils.encodeBase64(lstIDChecked_Hoan.get(i))));
                     Log.e(" entity", entity.toString());
                     httpPost.setEntity(entity);
                     HttpResponse response = client.execute(httpPost);

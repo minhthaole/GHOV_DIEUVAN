@@ -1,7 +1,6 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +9,22 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
+
+import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.lstDonHang_HHG;
 
 /**
  * Created by TuTV on 3/7/2017.
  */
 
 public class CustomAdapterXacNhanTatCaHangHenGiao extends ArrayAdapter<DonHang_HHG> {
+    static List<String> lstIDChecked_HenGiao = new ArrayList<>();
     private Context context;
     private int resource;
     private ArrayList<DonHang_HHG> lstDonHangHang_HHG;
@@ -42,11 +46,14 @@ public class CustomAdapterXacNhanTatCaHangHenGiao extends ArrayAdapter<DonHang_H
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (checkBox.isChecked()) {
-                    Bundle bundleCheckBox = new Bundle();
-                    bundleCheckBox.putString("idCheckBox", lstDonHangHang_HHG.get(position).getId_HHG());
-                    DialogChonTatCaHangHenGiao dialogChonTatCaHangHenGiao = new DialogChonTatCaHangHenGiao();
-                    dialogChonTatCaHangHenGiao.setArguments(bundleCheckBox);
+                if (isChecked) {
+                    lstIDChecked_HenGiao.add(lstDonHang_HHG.get(position).getId_HHG());
+                    Toast.makeText(context, "check "+lstDonHang_HHG.get(position).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT).show();
+                } else {
+                    lstIDChecked_HenGiao.remove(lstDonHang_HHG.get(position).getId_HHG());
+                    Toast.makeText(context, "un_check "+lstDonHang_HHG.get(position).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT)
+                            .show();
+
                 }
             }
         });

@@ -32,7 +32,6 @@ import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
 import group.vulner.ghov_dieuvan.view.hangvekho.Presenter.ExpandableListViewHangHenGiao;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaohang_HHG;
-import group.vulner.ghov_dieuvan.view.tapketgiao.model.DonHang;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
 
@@ -41,9 +40,9 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class FragmentHangHenGiao extends Fragment {
+    public static ArrayList<DonHang_HHG> lstDonHang_HHG = new ArrayList<>();
     ExpandableListView my_expandableListView;
     public static String key = "key";
-    public static ArrayList<DonHang_HHG> lstDonHang_HHG;
     public static FragmentHangHenGiao newInstace(int position) {
         FragmentHangHenGiao fragment = new FragmentHangHenGiao();
         Bundle bundle = new Bundle();
