@@ -119,17 +119,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:weightSum="4"
         android:layout_height="wrap_content">
 
-        <!--<Button-->
+        <Button
 
-            <!--android:id="@+id/btn_sua_ghi_chu_hangvekho"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="@string/sua_ghi_chu"-->
-            <!--android:textAllCaps="false"/>-->
-        <!--btn_goi_nguoi_nhan_hangvekho-->
+            android:id="@+id/btn_sua_ghi_chu_hangvekho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sua_ghi_chu"
+            android:textAllCaps="false"/>
+        btn_goi_nguoi_nhan_hangvekho
 
         <Button
             android:id="@+id/btn_goi_nguoi_nhan_hangvekho"

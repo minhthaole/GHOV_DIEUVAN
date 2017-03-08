@@ -275,13 +275,11 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
                         Intent intent = new Intent(Intent.ACTION_CALL);
                         intent.setData(Uri.parse(sdtNguoiNhan));
                         context.startActivity(intent);
-                        Toast.makeText(context, "Xác nhận", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "Hủy bỏ", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -292,9 +290,7 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         btnNhanTatCa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Bạn vừa nhấn chọn " + ghiChu, Toast.LENGTH_SHORT).show();
                 DialogChonTatCaHangHoan dialogChonTatCaHangHoan = new DialogChonTatCaHangHoan();
-//
                 dialogChonTatCaHangHoan.show(Manager, "This is may dialogfragment");
 
             }

@@ -143,7 +143,6 @@ public class FragmentHangHoan extends Fragment {
                 HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan = new HashMap<>();
                 for (int i = 0; i < temp.size(); i++) {
                     List<DonHang_Hoan> donHang_Hoan = new ArrayList<>();
-
                     if (i == 0) {
                         for (int a = 0; a < temp.get(0).getLstDonHangHHG().size(); a++) {
                             donHang_Hoan.add(temp.get(i).getLstDonHangHHG().get(a));

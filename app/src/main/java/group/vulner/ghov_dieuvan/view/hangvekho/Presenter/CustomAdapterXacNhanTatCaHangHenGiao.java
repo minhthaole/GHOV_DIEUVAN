@@ -48,12 +48,8 @@ public class CustomAdapterXacNhanTatCaHangHenGiao extends ArrayAdapter<DonHang_H
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     lstIDChecked_HenGiao.add(lstDonHang_HHG.get(position).getId_HHG());
-                    Toast.makeText(context, "check "+lstDonHang_HHG.get(position).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT).show();
                 } else {
                     lstIDChecked_HenGiao.remove(lstDonHang_HHG.get(position).getId_HHG());
-                    Toast.makeText(context, "un_check "+lstDonHang_HHG.get(position).getTenNguoiNhan_HHG(), Toast.LENGTH_SHORT)
-                            .show();
-
                 }
             }
         });
