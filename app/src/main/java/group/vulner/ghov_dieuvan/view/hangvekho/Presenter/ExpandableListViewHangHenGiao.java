@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +42,6 @@ import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_HHG;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaohang_HHG;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
-import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.lstDonHang_HHG;
 
 /**
  * Created by TuTV on 3/2/2017.
@@ -121,7 +119,6 @@ public class ExpandableListViewHangHenGiao extends BaseExpandableListAdapter {
         tvTenNguoiNhan = (TextView) view.findViewById(R.id.tv_ten_nguoi_nhan_hangvekho);
         tvDiaChiNhan = (TextView) view.findViewById(R.id.tv_dia_chi_nguoi_nhan_hangvekho);
         tvGhiChu = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
-        final EditText edtSuaGhiChu = (EditText) view.findViewById(R.id.edt_sua_ghi_chu);
         final Boolean[] click = {false};
 
 
