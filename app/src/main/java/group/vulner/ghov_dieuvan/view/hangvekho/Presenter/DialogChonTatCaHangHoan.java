@@ -1,5 +1,6 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -64,7 +65,6 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "ABC" + lstIDChecked_Hoan.size(), Toast.LENGTH_SHORT).show();
                 AsyntaskXacNhanTatCaDonHangDonHang_Hoan asyntaskXacNhanTatCaDonHangDonHang_hoan = new
                         AsyntaskXacNhanTatCaDonHangDonHang_Hoan(getContext());
                 asyntaskXacNhanTatCaDonHangDonHang_hoan.execute();
@@ -80,12 +80,20 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
         lv_hien_thi_xac_nhan_tat_ca.setAdapter(arrayAdapter);
         return view;
     }
-
     public class AsyntaskXacNhanTatCaDonHangDonHang_Hoan extends AsyncTask<Void, Void, String> {
         Context context;
-
+        ProgressDialog progressDialog;
         public AsyntaskXacNhanTatCaDonHangDonHang_Hoan(Context context) {
             this.context = context;
+            progressDialog = new ProgressDialog(context);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setTitle("Xác nhận hàng hoàn!");
+            progressDialog.setMessage("Vui lòng đợi...");
+            progressDialog.show();
         }
 
         @Override
@@ -94,7 +102,16 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
             SharepreferenceManager manager = new SharepreferenceManager(context);
             String sesstion = manager.getSession("giá trị mặc định");
             String GiaTriTraVe = null;
+            String listID = "";
             for (int i = 0; i < lstIDChecked_Hoan.size(); i++) {
+                if (i == lstIDChecked_Hoan.size() - 1) {
+                    listID += lstIDChecked_Hoan.get(i);
+                } else {
+                    listID += lstIDChecked_Hoan.get(i) + ",";
+                }
+                Log.e("listID", listID);
+            }
+
                 GiaTriTraVe = "";
                 String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hoan-ve-kho";
                 HttpClient client = new DefaultHttpClient();
@@ -103,7 +120,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
 
                 try {
                     entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
-                    entity.addPart("list", new StringBody(Utils.encodeBase64(lstIDChecked_Hoan.get(i))));
+                    entity.addPart("list", new StringBody(Utils.encodeBase64(listID)));
                     Log.e(" entity", entity.toString());
                     httpPost.setEntity(entity);
                     HttpResponse response = client.execute(httpPost);
@@ -122,8 +139,9 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                }
+//                }
             }
+//            }
             return GiaTriTraVe;
 
         }
@@ -131,10 +149,12 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Log.e("Xác nhận hoàn", s);
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {
-                    Toast.makeText(context, "Xác nhận hẹn giao" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
+                    Log.e("return hoan ", s);
+                    Toast.makeText(context, "Xác nhận hoàn" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
                     dismiss();
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -146,6 +166,7 @@ public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragme
             catch (Exception e) {
                 e.printStackTrace();
             }
+            progressDialog.dismiss();
         }
     }
 }

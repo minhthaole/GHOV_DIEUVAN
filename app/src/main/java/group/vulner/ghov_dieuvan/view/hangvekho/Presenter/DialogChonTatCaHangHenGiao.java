@@ -1,10 +1,12 @@
 package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.
  */
 
 public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFragment {
+    FragmentManager fragmentManager = getFragmentManager();
     Context context;
     Button btnCancelDiaLogHangHenGiao, btnSubmitDialogHangHenGiao, btnSubmitAllDialogHangHenGiao;
     ListView lv_hien_thi_xac_nhan_tat_ca_hanghengiao;
@@ -77,9 +80,13 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
     }
     public class AsyntaskXacNhanTatCaDonHangDonHang_HHG extends AsyncTask<Void, Void, String> {
         Context context;
-
+        ProgressDialog progressDialog;
         public AsyntaskXacNhanTatCaDonHangDonHang_HHG(Context context) {
             this.context = context;
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setTitle("Xác nhận hàng hẹn giao!");
+            progressDialog.setMessage("Vui lòng đợi...");
+            progressDialog.show();
         }
 
         @Override
@@ -88,7 +95,15 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
             SharepreferenceManager manager = new SharepreferenceManager(context);
             String sesstion = manager.getSession("giá trị mặc định");
             String GiaTriTraVe = null;
-            for (int i = 0; i < lstIDChecked_HenGiao.size(); i++) {
+            String listID = "";
+                for (int i = 0; i < lstIDChecked_HenGiao.size(); i++) {
+                    if (i == lstIDChecked_HenGiao.size() - 1) {
+                        listID += lstIDChecked_HenGiao.get(i);
+                    } else {
+                        listID += lstIDChecked_HenGiao.get(i) + ",";
+                    }
+                    Log.e("listID", listID);
+                }
                 GiaTriTraVe = "";
                 String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
                 HttpClient client = new DefaultHttpClient();
@@ -97,7 +112,7 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
 
                 try {
                     entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
-                    entity.addPart("list", new StringBody(Utils.encodeBase64(lstIDChecked_HenGiao.get(i))));
+                    entity.addPart("list", new StringBody(Utils.encodeBase64(listID)));
                     Log.e(" entity", entity.toString());
                     httpPost.setEntity(entity);
                     HttpResponse response = client.execute(httpPost);
@@ -117,7 +132,6 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
             return GiaTriTraVe;
 
         }
@@ -125,14 +139,16 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            Log.e("xác nhận hẹn giao ", s);
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {
                     Toast.makeText(context, "Xác nhận hẹn giao" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
                     dismiss();
-                    Intent intent = new Intent(context, MainActivity.class);
+                    Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    context.startActivity(intent);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(context, "Xác nhận thất bại!", Toast.LENGTH_SHORT).show();
                 }
@@ -140,6 +156,7 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
             catch (Exception e) {
                 e.printStackTrace();
             }
+            progressDialog.dismiss();
         }
     }
 }

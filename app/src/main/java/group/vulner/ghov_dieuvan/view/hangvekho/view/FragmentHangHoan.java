@@ -22,7 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +57,7 @@ public class FragmentHangHoan extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_hang_ve_kho, container, false);
         my_expandableListView = (ExpandableListView) view.findViewById(R.id.epl_hang_ve_kho);
+
         AsyntaskHangHoan asyntaskDanhSachHangVeKho = new AsyntaskHangHoan(getContext());
         asyntaskDanhSachHangVeKho.execute();
 
