@@ -85,6 +85,7 @@ public class FragmentHangHoan extends Fragment {
             MultipartEntity entity = new MultipartEntity();
             try {
                 entity.addPart("session", new StringBody(Utils.encodeBase64(sesstion)));
+                Log.e("session",Utils.encodeBase64(sesstion));
                 Log.e("entity hàng hoàn", entity.toString());
                 httpPost.setEntity(entity);
                 HttpResponse response = client.execute(httpPost);
@@ -105,7 +106,6 @@ public class FragmentHangHoan extends Fragment {
                             JSONObject objectCurrent = arrayDetail.getJSONObject(o);
                             DonHang_Hoan donHangHoan = new DonHang_Hoan();
                             donHangHoan.setId_Hoan(objectCurrent.getString("id"));
-//                            Log.e("id hen ngay",donHangHoan.setId(objectCurrent.getString("id")).t);
                             donHangHoan.setTrackingId_Hoan(objectCurrent.getString("tracking_id"));
                             donHangHoan.setIdKhachHang_Hoan(objectCurrent.getString("id_khachhang"));
                             donHangHoan.setMaDonHang_Hoan(objectCurrent.getString("ma_don_hang"));
@@ -117,9 +117,7 @@ public class FragmentHangHoan extends Fragment {
                             donHangHoan.setTienThuHo_Hoan(objectCurrent.getString("tien_thu_ho"));
                             donHangHoan.setGhiChu_Hoan(objectCurrent.getString("ghi_chu"));
                             lstDonHangHoan.add(donHangHoan);
-//                            Log.e("donHangHoan", String.valueOf(lstDonHangHoan.size()));
                         }
-
                     }
                     return lstDonHangHoan;
                 }
@@ -166,7 +164,9 @@ public class FragmentHangHoan extends Fragment {
                             previousGroup = groupPosition;
                         }
                     });
+
                 }
+
             }
         }
     }

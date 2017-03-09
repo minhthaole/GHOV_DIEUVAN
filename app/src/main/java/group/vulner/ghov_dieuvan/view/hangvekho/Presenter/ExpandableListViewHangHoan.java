@@ -49,7 +49,7 @@ import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
-import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.DialogChinhSuaGhiChu.strSuaGhiChu;
+import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.DialogChinhSuaGhiChuHangHoan.strSuaGhiChu;
 
 /**
  * Created by TuTV on 3/4/2017.
@@ -59,7 +59,7 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
     private FragmentManager Manager;
     Button btnSuaGhiChu, btnGoiNguoiNhan, btnXacNhan, btnNhanTatCa;
     Utils utils = new Utils();
-    TextView tvTenNguoiGui, tvTenNguoiNhan, tvDiaChiNhan, tvGhiChu;
+
     private static final int MY_REQUEST_CALL_PHONE = 123;
     Boolean[] click = {false};
     Context context;
@@ -125,13 +125,12 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.don_hang_hanghengiao, parent, false);
         }
-
-        LinearLayout lnGhiChu, lnChiChuContainsTxtEdt;
-        lnGhiChu = (LinearLayout) view.findViewById(R.id.ln_ghichu);
+        final TextView tvTenNguoiGui, tvTenNguoiNhan, tvDiaChiNhan, tvGhiChu,tvGhiChuSauSua;
         tvTenNguoiGui = (TextView) view.findViewById(R.id.tv_ten_nguoi_gui_hangvekho);
         tvTenNguoiNhan = (TextView) view.findViewById(R.id.tv_ten_nguoi_nhan_hangvekho);
         tvDiaChiNhan = (TextView) view.findViewById(R.id.tv_dia_chi_nguoi_nhan_hangvekho);
         tvGhiChu = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
+        tvGhiChuSauSua = (TextView) view.findViewById(R.id.tv_ghi_chu_hangvekho);
 
         final FragmentManager manager = new FragmentManager() {
             @Override
@@ -238,10 +237,10 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         tvTenNguoiNhan.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getTenNguoiNhanHang_Hoan());
 
         tvDiaChiNhan.setText(hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getDoiDiaChiNhan_Hoan());
-
-        String ghiChuOgri = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getGhiChu_Hoan();
-        final String ghiChu = ghiChuOgri.replace("\\n", "\n");
-        tvGhiChu.setText(ghiChu);
+        String ghiChuOgir=hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition)
+                .getGhiChu_Hoan();
+        String A=ghiChuOgir.replace("\\n","\n");
+        tvGhiChu.setText(A);
         final String listID = hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get(childPosition).getId_Hoan();
 
         btnSuaGhiChu = (Button) view.findViewById(R.id.btn_sua_ghi_chu_hangvekho);
@@ -251,11 +250,11 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         final String sdtNguoiNhan = "tel:" + hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get
                 (childPosition).getSdtNguoiNhan_Hoan();
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
-                DialogChinhSuaGhiChu dialogChinhSuaGhiChu=new DialogChinhSuaGhiChu();
-                dialogChinhSuaGhiChu.show(Manager,"this this dialog for change note!");
-                Toast.makeText(context, ""+strSuaGhiChu, Toast.LENGTH_SHORT).show();
+                DialogChinhSuaGhiChuHangHoan dialogChinhSuaGhiChuHangHoan = new DialogChinhSuaGhiChuHangHoan();
+                dialogChinhSuaGhiChuHangHoan.show(Manager, "this this dialog for change note!");
+              return;
             }
         });
 
