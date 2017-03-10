@@ -1,4 +1,4 @@
-package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
+package group.vulner.ghov_dieuvan.view.hangvekho.Presenter.hanghoan;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,67 +23,75 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.Utils;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
 import group.vulner.ghov_dieuvan.view.MainActivity;
+import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
-import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.CustomAdapterXacNhanTatCaHangHenGiao.lstIDChecked_HenGiao;
-import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao.lstDonHang_HHG;
+import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.hanghoan.CustomAdapterXacNhanTatCaHangHoan.lstIDChecked_Hoan;
+import static group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHoan.lstDonHangHoan;
 
 /**
- * Created by TuTV on 3/7/2017.
+ * Created by TuTV on 3/6/2017.
  */
 
-public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFragment {
-    FragmentManager fragmentManager = getFragmentManager();
+public class DialogChonTatCaHangHoan extends android.support.v4.app.DialogFragment {
+    ArrayList<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_hoan = new ArrayList<>();
+    NhanVienGiaoHang_Hoan nhanVienGiaoHang_hoan = new NhanVienGiaoHang_Hoan();
     Context context;
-    Button btnCancelDiaLogHangHenGiao, btnSubmitDialogHangHenGiao, btnSubmitAllDialogHangHenGiao;
-    ListView lv_hien_thi_xac_nhan_tat_ca_hanghengiao;
+
+    Button btnCancel, btnSubmit, btnSubmitAll;
+    ListView lv_hien_thi_xac_nhan_tat_ca;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.dialogfragment_nhan_tat_ca_hanghengiao, container, false);
-
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialogfragment_xac_nhan_tat_ca_hanghoan, container, false);
         getDialog().setTitle("This is title dialog");
+        btnCancel = (Button) view.findViewById(R.id.btn_cancel_dialog_hanghoan);
 
-
-
-        btnCancelDiaLogHangHenGiao = (Button) view.findViewById(R.id.btn_cancel_dialog_hanghengiao);
-        btnSubmitDialogHangHenGiao = (Button) view.findViewById(R.id.btn_submit_dialog_hanghengiao);
-        btnCancelDiaLogHangHenGiao.setOnClickListener(new View.OnClickListener() {
+        btnSubmit = (Button) view.findViewById(R.id.btn_submit_dialog_hoan);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-        btnSubmitDialogHangHenGiao = (Button) view.findViewById(R.id.btn_submit_dialog_hanghengiao);
-        btnSubmitDialogHangHenGiao.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyntaskXacNhanTatCaDonHangDonHang_HHG asyntaskXacNhanTatCaDonHangDonHang_hhg=new
-                        AsyntaskXacNhanTatCaDonHangDonHang_HHG(getContext());
-                asyntaskXacNhanTatCaDonHangDonHang_hhg.execute();
+                AsyntaskXacNhanTatCaDonHangDonHang_Hoan asyntaskXacNhanTatCaDonHangDonHang_hoan = new
+                        AsyntaskXacNhanTatCaDonHangDonHang_Hoan(getContext());
+                asyntaskXacNhanTatCaDonHangDonHang_hoan.execute();
+
+
 
             }
         });
-        CustomAdapterXacNhanTatCaHangHenGiao arrayAdapter = new CustomAdapterXacNhanTatCaHangHenGiao(getContext(), R.layout
-                .custom_listview_nhan_tat_ca_hanghengiao, lstDonHang_HHG);
-        lv_hien_thi_xac_nhan_tat_ca_hanghengiao = (ListView) view.findViewById(R.id.lv_hien_thi_xac_nhan_tat_ca_hanghengiao);
-        lv_hien_thi_xac_nhan_tat_ca_hanghengiao.setAdapter(arrayAdapter);
+
+        CustomAdapterXacNhanTatCaHangHoan arrayAdapter = new CustomAdapterXacNhanTatCaHangHoan(getContext(), R.layout
+                .custom_listview_nhan_tat_ca_hang_hoan, lstDonHangHoan);
+        lv_hien_thi_xac_nhan_tat_ca = (ListView) view.findViewById(R.id.lv_hien_thi_xac_nhan_tat_ca);
+        lv_hien_thi_xac_nhan_tat_ca.setAdapter(arrayAdapter);
         return view;
     }
-    public class AsyntaskXacNhanTatCaDonHangDonHang_HHG extends AsyncTask<Void, Void, String> {
+    public class AsyntaskXacNhanTatCaDonHangDonHang_Hoan extends AsyncTask<Void, Void, String> {
         Context context;
         ProgressDialog progressDialog;
-        public AsyntaskXacNhanTatCaDonHangDonHang_HHG(Context context) {
+        public AsyntaskXacNhanTatCaDonHangDonHang_Hoan(Context context) {
             this.context = context;
             progressDialog = new ProgressDialog(context);
-            progressDialog.setTitle("Xác nhận hàng hẹn giao!");
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setTitle("Xác nhận hàng hoàn!");
             progressDialog.setMessage("Vui lòng đợi...");
             progressDialog.show();
         }
@@ -96,16 +103,17 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
             String sesstion = manager.getSession("giá trị mặc định");
             String GiaTriTraVe = null;
             String listID = "";
-                for (int i = 0; i < lstIDChecked_HenGiao.size(); i++) {
-                    if (i == lstIDChecked_HenGiao.size() - 1) {
-                        listID += lstIDChecked_HenGiao.get(i);
-                    } else {
-                        listID += lstIDChecked_HenGiao.get(i) + ",";
-                    }
-                    Log.e("listID", listID);
+            for (int i = 0; i < lstIDChecked_Hoan.size(); i++) {
+                if (i == lstIDChecked_Hoan.size() - 1) {
+                    listID += lstIDChecked_Hoan.get(i);
+                } else {
+                    listID += lstIDChecked_Hoan.get(i) + ",";
                 }
+                Log.e("listID", listID);
+            }
+
                 GiaTriTraVe = "";
-                String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hen-ngay";
+                String UrlXacNhan = "http://www.giaohangongvang.com/api/dieuvan/xac-nhan-hang-hoan-ve-kho";
                 HttpClient client = new DefaultHttpClient();
                 HttpPost httpPost = new HttpPost(UrlXacNhan);
                 MultipartEntity entity = new MultipartEntity();
@@ -131,7 +139,9 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                }
+//                }
+            }
+//            }
             return GiaTriTraVe;
 
         }
@@ -139,16 +149,16 @@ public class DialogChonTatCaHangHenGiao extends android.support.v4.app.DialogFra
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
-            Log.e("xác nhận hẹn giao ", s);
+            Log.e("Xác nhận hoàn", s);
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {
-                    Toast.makeText(context, "Xác nhận hẹn giao" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
+                    Log.e("return hoan ", s);
+                    Toast.makeText(context, "Xác nhận hoàn" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
                     dismiss();
-                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
+                    context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Xác nhận thất bại!", Toast.LENGTH_SHORT).show();
                 }

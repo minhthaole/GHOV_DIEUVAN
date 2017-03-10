@@ -1,4 +1,4 @@
-package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
+package group.vulner.ghov_dieuvan.view.hangvekho.Presenter.hanghoan;
 
 import android.Manifest;
 import android.app.Activity;
@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +48,6 @@ import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
-import static group.vulner.ghov_dieuvan.view.hangvekho.Presenter.DialogChinhSuaGhiChuHangHoan.strSuaGhiChu;
 
 /**
  * Created by TuTV on 3/4/2017.
@@ -252,8 +250,18 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
                 @Override
             public void onClick(View v) {
-                DialogChinhSuaGhiChuHangHoan dialogChinhSuaGhiChuHangHoan = new DialogChinhSuaGhiChuHangHoan();
+                    DialogChinhSuaGhiChuHangHoan dialogChinhSuaGhiChuHangHoan = new DialogChinhSuaGhiChuHangHoan();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("idDonHang", hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get
+                            (childPosition).getId_Hoan());
+                    Log.e("bundle", String.valueOf(bundle));
+                    dialogChinhSuaGhiChuHangHoan.setArguments(bundle);
                 dialogChinhSuaGhiChuHangHoan.show(Manager, "this this dialog for change note!");
+                    Toast.makeText(context, "" + hashMapDonHang_Hoan.get(lstNhanVienGiaoHang_Hoan_.get(groupPosition)).get
+                            (childPosition).getId_Hoan(), Toast
+                            .LENGTH_SHORT).show();
+
               return;
             }
         });
