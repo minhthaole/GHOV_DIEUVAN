@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -30,9 +32,11 @@ import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.Utils;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
 import group.vulner.ghov_dieuvan.view.hangvekho.Presenter.hanghoan.ExpandableListViewHangHoan;
+import group.vulner.ghov_dieuvan.view.hangvekho.Presenter.hanghoan.InterfaceHangHoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
+import static android.R.attr.action;
 import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
 
 /**
@@ -40,6 +44,16 @@ import static group.vulner.ghov_dieuvan.Utils.CheckRespone;
  */
 
 public class FragmentHangHoan extends Fragment {
+    Context context;
+
+    private InterfaceHangHoan interfaceHangHoan = new InterfaceHangHoan() {
+        @Override
+        public void refeshFragmentHangHoan(Context context) {
+            AsyntaskHangHoan asyntaskDanhSachHangVeKho = new AsyntaskHangHoan(getContext());
+            asyntaskDanhSachHangVeKho.execute();
+            Toast.makeText(context, "Tải lại fragment hoàn tất", Toast.LENGTH_SHORT).show();
+        }
+    };
     public static ArrayList<DonHang_Hoan>lstDonHangHoan=new ArrayList<>();
     public static String key = "key";
     ExpandableListView my_expandableListView;
@@ -152,7 +166,7 @@ public class FragmentHangHoan extends Fragment {
                     }
                     hashMapDonHang_Hoan.put(temp.get(i), donHang_Hoan);
                     ExpandableListViewHangHoan expandableListViewHangHoan = new ExpandableListViewHangHoan(context, temp,
-                            hashMapDonHang_Hoan, manager);
+                            hashMapDonHang_Hoan, manager, interfaceHangHoan);
                     my_expandableListView.setAdapter(expandableListViewHangHoan);
                     my_expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
                         int previousGroup = -1;

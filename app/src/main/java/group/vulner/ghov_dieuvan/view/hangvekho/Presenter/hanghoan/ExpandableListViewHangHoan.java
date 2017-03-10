@@ -43,7 +43,6 @@ import java.util.List;
 import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.Utils;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
-import group.vulner.ghov_dieuvan.view.MainActivity;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.DonHang_Hoan;
 import group.vulner.ghov_dieuvan.view.hangvekho.model.NhanVienGiaoHang_Hoan;
 
@@ -63,13 +62,15 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
     Context context;
     List<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_Hoan_;
     HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan;
-
+    private InterfaceHangHoan interfaceHangHoan;
     public ExpandableListViewHangHoan(Context context, List<NhanVienGiaoHang_Hoan> lstNhanVienGiaoHang_Hoan_,
-                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan, FragmentManager Manager) {
+                                      HashMap<NhanVienGiaoHang_Hoan, List<DonHang_Hoan>> hashMapDonHang_Hoan, FragmentManager
+                                              Manager, InterfaceHangHoan interfaceHangHoan) {
         this.context = context;
         this.lstNhanVienGiaoHang_Hoan_ = lstNhanVienGiaoHang_Hoan_;
         this.hashMapDonHang_Hoan = hashMapDonHang_Hoan;
         this.Manager = Manager;
+        this.interfaceHangHoan = interfaceHangHoan;
     }
 
     @Override
@@ -265,16 +266,6 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
               return;
             }
         });
-
-        //Button ghi chu
-//        btnSuaGhiChu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "" + ghiChu, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        // button goi nguoi nhan
         btnGoiNguoiNhan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -318,9 +309,9 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
                                                   public void onClick(DialogInterface dialog, int which) {
                                                       AsyntaskXacNhanDonHangHoan asyntaskXacNhanDonHangHoan = new AsyntaskXacNhanDonHangHoan(context);
                                                       asyntaskXacNhanDonHangHoan.execute(listID);
-                                                      Intent intent = new Intent(context, MainActivity.class);
-                                                      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                                      context.startActivity(intent);
+
+
+
                                                   }
                                               });
                                               dialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
@@ -401,21 +392,26 @@ public class ExpandableListViewHangHoan extends BaseExpandableListAdapter {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
             if (s != null) {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss").format(Calendar.getInstance().getTime());
             try {
                 if (CheckRespone(s)) {
                     Log.e("xac nhan hang hoan", s);
+                    progressDialog.dismiss();
+                    interfaceHangHoan.refeshFragmentHangHoan(context);
                     Toast.makeText(context, "Xác nhận hàng hoàn" + "\n" + timeStamp, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Xác nhận thất bại!", Toast.LENGTH_SHORT).show();
                     Log.e("xac nhan hang hoan", s);
+                    progressDialog.dismiss();
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
             } else {
+                progressDialog.dismiss();
                 Toast.makeText(context, "Không thành công", Toast.LENGTH_SHORT).show();
             }
         }

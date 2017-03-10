@@ -3,9 +3,11 @@ package group.vulner.ghov_dieuvan.view.hangvekho.Presenter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHenGiao;
 import group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangHoan;
+import group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangVeKhoGiao;
 
 /**
  * Created by TuTV on 2/28/2017.
@@ -25,6 +27,7 @@ public class SesstionAdapterFragment extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: {
+                Log.e("tag hang hoang222", String.valueOf(new FragmentHangHoan().getTag()));
                 return FragmentHangHoan.newInstace(0);
             }
             case 1:

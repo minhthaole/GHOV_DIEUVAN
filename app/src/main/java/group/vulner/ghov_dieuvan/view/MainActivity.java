@@ -19,8 +19,6 @@ import group.vulner.ghov_dieuvan.R;
 import group.vulner.ghov_dieuvan.model.file.SharepreferenceManager;
 import group.vulner.ghov_dieuvan.view.hangvekho.view.FragmentHangVeKhoGiao;
 import group.vulner.ghov_dieuvan.view.login.ActivityLogin;
-import group.vulner.ghov_dieuvan.view.taodonhangmoi.views.FragmentTaoDonHangMoi;
-import group.vulner.ghov_dieuvan.view.tapketnhan.FragmentDanhSachTapKetNhan;
 
 
 public class MainActivity extends AppCompatActivity
@@ -41,8 +39,10 @@ public class MainActivity extends AppCompatActivity
         }
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.flChangeFragment, new FragmentHangVeKhoGiao());
+        transaction.replace(R.id.flChangeFragment, new FragmentHangVeKhoGiao(), "TAG_HANG_HOAN");
         transaction.commit();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Giao hàng ong vàng");
